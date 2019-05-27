@@ -6,6 +6,8 @@ description: "三维目标识别论文笔记"
 tag: 3D视觉 
 ---
 
+<img src="/doc_imgae/2019-5-22/1.png" height="300" width="500">
+
 这是2019年4月发表在compute&graphics 期刊上的一篇基于模板匹配的3D点云中位姿估计。
 该论文有以下四大两点（源自于作者自己的言论--哈哈）：
 > * 将模板匹配的方法用于点云（这个有点牵强，明明就是基于特征描述子的点云配准）
@@ -45,7 +47,8 @@ tag: 3D视觉
 
 ### 3.2 Edge Detection
 
-
+<img src="/doc_imgae/2019-5-22/2.png" height="300" width="500">
+<img src="/doc_imgae/2019-5-22/3.png" height="300" width="500">
 
 对每个扫描点云和模型点云都计算一个五维的特征向量
 
@@ -60,15 +63,14 @@ $$(p) =1/|Nr(p)|(累加)h(kpi − pk2)(pi − p)(pi − p)T $$
 
 
 
-
-![img1](https://github.com/my-lord/my-lord.github.io/blob/master/doc_imgae/2015-5-22/1.png)
-
-----
-![image2](https://github.com/my-lord/my-lord.github.io/blob/master/doc_imgae/2015-5-22/2.png)
 ----
 
-----
-![image3](https://github.com/my-lord/my-lord.github.io/blob/master/doc_imgae/2015-5-22/3.png)
-----
-![image4](https://github.com/my-lord/my-lord.github.io/blob/master/doc_imgae/2015-5-22/4.png)
-----
+<br>
+*转载请注明原地址，邓辉的博客：[https://github.com/my-lord/mylord.github.io](https://github.com/my-lord/mylord.github.io) 谢谢！*
+
+-------------------------------------------
+
+#请各位大佬多多打赏
+
+
+-------------------------------------------

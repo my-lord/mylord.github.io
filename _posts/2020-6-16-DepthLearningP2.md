@@ -76,3 +76,5 @@ $$H(x) = Ex~p[I(x)] = -Ex~p[I(x)]$$
 如果对于同一个随机变量x有两个单独的概率分布P(x)和Q(x)，可以使用KL散度（Kullback-Leibler(KL)divergence）来衡量这两个分布的差异：
 $$Dkl(P||Q) = Ex~p[log(P(x)/Q(x))] = Ex~p[logP(x) - logQ(x)]$$
 
+----
+

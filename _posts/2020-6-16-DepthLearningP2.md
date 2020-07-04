@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "深度学习-概率与信息论"
+title: "deep learning about probability analysis"
 date: 2020-6-17 
 description: "深度学习，学习笔记"
 tag: DepthLearning 

@@ -1,5 +1,5 @@
----
 
+----
 layout:post
 
 title:"Open3d - Geometry -- Point clouds"
@@ -10,7 +10,9 @@ description:"Open3D 笔记 "
 
 tag: Open3D
 
----
+----
+
+
 
 ### 点云读取
 
@@ -263,3 +265,9 @@ o3d.visualization.draw_geometries([pcd])
 ```
 
 hidden_point_removal 函数输入参数是相机位置、投影球体半径。返回一个元组包含模型文件的索引和未被遮挡的点云。
+
+
+
+----
+
+2021.1.8  于佛山

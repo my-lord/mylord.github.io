@@ -1,12 +1,33 @@
+----
+
+layout:post
+
+title:"Open3d - Geometry -- Point clouds"
+
+data:2021-1-8
+
+description:"CPU 内置信息 "
+
+tag: CPU-info
+
+----
+
+## CPU支持 SIMD格式查询代码 
 
 
 
+
+
+``` c++
 #include <iostream>
 #include <vector>
 #include <bitset>
 #include <array>
 #include <string>
 #include <intrin.h>
+
+
+
 
 class InstructionSet
 {
@@ -34,7 +55,7 @@ public:
 	static bool AVX(void) { return CPU_Rep.f_1_ECX_[28]; }
 	static bool F16C(void) { return CPU_Rep.f_1_ECX_[29]; }
 	static bool RDRAND(void) { return CPU_Rep.f_1_ECX_[30]; }
-
+	
 	static bool MSR(void) { return CPU_Rep.f_1_EDX_[5]; }
 	static bool CX8(void) { return CPU_Rep.f_1_EDX_[8]; }
 	static bool SEP(void) { return CPU_Rep.f_1_EDX_[11]; }
@@ -44,7 +65,7 @@ public:
 	static bool FXSR(void) { return CPU_Rep.f_1_EDX_[24]; }
 	static bool SSE(void) { return CPU_Rep.f_1_EDX_[25]; }
 	static bool SSE2(void) { return CPU_Rep.f_1_EDX_[26]; }
-
+	
 	static bool FSGSBASE(void) { return CPU_Rep.f_7_EBX_[0]; }
 	static bool BMI1(void) { return CPU_Rep.f_7_EBX_[3]; }
 	static bool HLE(void) { return CPU_Rep.isIntel_ && CPU_Rep.f_7_EBX_[4]; }
@@ -60,16 +81,16 @@ public:
 	static bool AVX512ER(void) { return CPU_Rep.f_7_EBX_[27]; }
 	static bool AVX512CD(void) { return CPU_Rep.f_7_EBX_[28]; }
 	static bool SHA(void) { return CPU_Rep.f_7_EBX_[29]; }
-
+	
 	static bool PREFETCHWT1(void) { return CPU_Rep.f_7_ECX_[0]; }
-
+	
 	static bool LAHF(void) { return CPU_Rep.f_81_ECX_[0]; }
 	static bool LZCNT(void) { return CPU_Rep.isIntel_ && CPU_Rep.f_81_ECX_[5]; }
 	static bool ABM(void) { return CPU_Rep.isAMD_ && CPU_Rep.f_81_ECX_[5]; }
 	static bool SSE4a(void) { return CPU_Rep.isAMD_ && CPU_Rep.f_81_ECX_[6]; }
 	static bool XOP(void) { return CPU_Rep.isAMD_ && CPU_Rep.f_81_ECX_[11]; }
 	static bool TBM(void) { return CPU_Rep.isAMD_ && CPU_Rep.f_81_ECX_[21]; }
-
+	
 	static bool SYSCALL(void) { return CPU_Rep.isIntel_ && CPU_Rep.f_81_EDX_[11]; }
 	static bool MMXEXT(void) { return CPU_Rep.isAMD_ && CPU_Rep.f_81_EDX_[22]; }
 	static bool RDTSCP(void) { return CPU_Rep.isIntel_ && CPU_Rep.f_81_EDX_[27]; }
@@ -98,18 +119,18 @@ private:
 		{
 			//int cpuInfo[4] = {-1};
 			std::array<int, 4> cpui;
-
+	
 			// Calling __cpuid with 0x0 as the function_id argument
 			// gets the number of the highest valid function ID.
 			__cpuid(cpui.data(), 0);
 			nIds_ = cpui[0];
-
+	
 			for (int i = 0; i <= nIds_; ++i)
 			{
 				__cpuidex(cpui.data(), i, 0);
 				data_.push_back(cpui);
 			}
-
+	
 			// Capture vendor string
 			char vendor[0x20];
 			memset(vendor, 0, sizeof(vendor));
@@ -125,42 +146,42 @@ private:
 			{
 				isAMD_ = true;
 			}
-
+	
 			// load bitset with flags for function 0x00000001
 			if (nIds_ >= 1)
 			{
 				f_1_ECX_ = data_[1][2];
 				f_1_EDX_ = data_[1][3];
 			}
-
+	
 			// load bitset with flags for function 0x00000007
 			if (nIds_ >= 7)
 			{
 				f_7_EBX_ = data_[7][1];
 				f_7_ECX_ = data_[7][2];
 			}
-
+	
 			// Calling __cpuid with 0x80000000 as the function_id argument
 			// gets the number of the highest valid extended ID.
 			__cpuid(cpui.data(), 0x80000000);
 			nExIds_ = cpui[0];
-
+	
 			char brand[0x40];
 			memset(brand, 0, sizeof(brand));
-
+	
 			for (int i = 0x80000000; i <= nExIds_; ++i)
 			{
 				__cpuidex(cpui.data(), i, 0);
 				extdata_.push_back(cpui);
 			}
-
+	
 			// load bitset with flags for function 0x80000001
 			if (nExIds_ >= 0x80000001)
 			{
 				f_81_ECX_ = extdata_[1][2];
 				f_81_EDX_ = extdata_[1][3];
 			}
-
+	
 			// Interpret CPU brand string if reported
 			if (nExIds_ >= 0x80000004)
 			{
@@ -170,7 +191,7 @@ private:
 				brand_ = brand;
 			}
 		};
-
+	
 		int nIds_;
 		int nExIds_;
 		std::string vendor_;
@@ -186,6 +207,7 @@ private:
 		std::vector<std::array<int, 4>> data_;
 		std::vector<std::array<int, 4>> extdata_;
 	};
+
 };
 
 // Initialize static member data
@@ -200,10 +222,10 @@ int main()
 	auto support_message = [&outstream](std::string isa_feature, bool is_supported) {
 		outstream << isa_feature << (is_supported ? " supported" : " not supported") << std::endl;
 	};
-
+	
 	std::cout << InstructionSet::Vendor() << std::endl;
 	std::cout << InstructionSet::Brand() << std::endl;
-
+	
 	support_message("3DNOW", InstructionSet::_3DNOW());
 	support_message("3DNOWEXT", InstructionSet::_3DNOWEXT());
 	support_message("ABM", InstructionSet::ABM());
@@ -255,6 +277,15 @@ int main()
 	support_message("TBM", InstructionSet::TBM());
 	support_message("XOP", InstructionSet::XOP());
 	support_message("XSAVE", InstructionSet::XSAVE());
-
+	
 	system("pause");
+
 }
+
+```
+
+
+
+---
+
+2020.12.22 于佛山

@@ -1,10 +1,17 @@
 ---
 layout: post
+
 title: "深度学习-数据操作"
+
 date: 2020-9-15 
+
 description: "学习笔记"
-tag: 深度学习 
---- 
+
+tag:deep-learning
+
+----
+
+
 
 ## 前言
 
@@ -52,7 +59,7 @@ array([[ 1.5,  2. ,  3. ],
 >>> c
 array([[ 1.+0.j,  2.+0.j],
        [ 3.+0.j,  4.+0.j]])
-	   
+
 ### 矩阵的行数列数
 
 import numpy as np 
@@ -579,7 +586,7 @@ def mandelbrot( h,w, maxit=20 ):
         div_now = diverge & (divtime==maxit)  # who is diverging now
         divtime[div_now] = i                  # note when
         z[diverge] = 2                        # avoid diverging too much
-
+    
     return divtime
 plt.imshow(mandelbrot(400,400))
 plt.show()

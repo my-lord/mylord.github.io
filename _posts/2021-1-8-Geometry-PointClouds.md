@@ -1,11 +1,18 @@
 ---
-layout:post
-title:"Open3d - Geometry -- Point clouds"
-data:2021-1-8
-description:"Open3D 笔记 "
+layout: post
+title: "Open3d - Geometry -- Point clouds"
+data: 2021-1-8
+description: "Open3D 笔记 "
 tag: Open3D
 ---
 
+---
+layout: post
+title: "Open3D - PointCloud-1"
+date: 2021-1-8 
+description: "Open3D（Geometry->PointCloud）"
+tag: Open3D 
+---   
 
 
 ### 点云读取

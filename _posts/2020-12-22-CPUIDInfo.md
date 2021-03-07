@@ -1,12 +1,12 @@
 ----
 
-layout:post
+layout: post
 
-title:"Open3d - Geometry -- Point clouds"
+title: "Open3d - Geometry -- Point clouds"
 
-data:2021-1-8
+data: 2021-1-8
 
-description:"CPU 内置信息 "
+description: "CPU 内置信息 "
 
 tag: CPU-info
 

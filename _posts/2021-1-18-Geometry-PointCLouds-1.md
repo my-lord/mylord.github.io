@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Open3D - PointCloud-1"
-date: 2021-1-18 
-description: "Open3D（Geometry->PointCloud）"
-tag: Open3D 
----   
+data: 2021-1-18
+description: "Open3D 笔记 "
+tag: Open3D
+---
 
 
 

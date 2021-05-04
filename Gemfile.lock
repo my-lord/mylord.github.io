@@ -52,6 +52,7 @@ DEPENDENCIES
   jekyll
   jekyll-paginate
   redcarpet
+  
 
 BUNDLED WITH
    1.15.3
